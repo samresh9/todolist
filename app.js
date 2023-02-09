@@ -22,7 +22,7 @@ await mongoose.connect("mongodb+srv://Samresh:samresh7@atlascluster.al7n5nu.mong
 console.log("connected successfully");
 }  
 catch (error){
-console.log("Cannot connect");
+console.log("Cannot connect" , error);
 }
 }
 
