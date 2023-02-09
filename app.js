@@ -15,7 +15,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 mongoose.set('strictQuery', true);
-
+connectDB();
+async function connectDB(){
+  await mongoose.connect("mongodb+srv://Samresh:samresh7@atlascluster.al7n5nu.mongodb.net/todolistDB" ,()=>{console.log("mongo first")});
+}
 mongoose.connect("mongodb+srv://Samresh:samresh7@atlascluster.al7n5nu.mongodb.net/todolistDB" ,()=>{console.log("mongo first")});
 console.log("connected");
 const itemsSchema = new mongoose.Schema({
