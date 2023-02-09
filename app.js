@@ -9,13 +9,15 @@ const app = express();
 //console.log(date.getDate);
 //let items = ["wake up", "drink water", "Go for Walk"];
 //let workItems = [];
-let title;
+//let title;
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+
+mongoose.connect("mongodb+srv://Samresh:samresh7@atlascluster.al7n5nu.mongodb.net/todolistDB" ,()=>{console.log("mongo first")});
+console.log("connected");
 const itemsSchema = new mongoose.Schema({
   name: String
 })
@@ -70,7 +72,7 @@ app.post("/", function (req, res) {
     name: itemName
   })
   if (listName ==="Today"){
-    Item.save();
+    item.save();
     res.redirect("/");
   }
  else{
@@ -129,7 +131,7 @@ app.get("/:customListName", (req,res)=>{
   
 })
 
-
-app.listen(8000, function () {
+const port = process.env.port || 8000;
+app.listen(portgi, function () {
   console.log("server started  http://localhost:8000");
 });
