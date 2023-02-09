@@ -135,6 +135,8 @@ app.get("/:customListName", (req,res)=>{
 })
 
 const port = process.env.port || 8000;
-app.listen(port, function () {
-  console.log("server started  http://localhost:8000");
-});
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log("listening for requests");
+    })
+})
